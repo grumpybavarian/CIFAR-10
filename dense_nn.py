@@ -35,7 +35,7 @@ class Model(object):
         self.y = dense_layer(self.network, num_neurons=10, keep_prob=1.0)
 
         self.loss = tf.nn.softmax_cross_entropy_with_logits(logits=self.y, labels=self.y_)
-        self.train_step = tf.train.AdamOptimizer(learning_rate=1e-2).minimize(self.loss)
+        self.train_step = tf.train.AdamOptimizer(learning_rate=0.1).minimize(self.loss)
 
         self.correct_prediction = tf.equal(tf.argmax(self.y, 1), tf.argmax(self.y_, 1))
         self.accuracy = tf.reduce_mean(tf.cast(self.correct_prediction, tf.float32))
@@ -46,7 +46,7 @@ class Model(object):
         data_batches = ["data_batch_1", "data_batch_2", "data_batch_3", "data_batch_4", "data_batch_5"]
         test_batch = "test_batch"
 
-        num_epochs = 50
+        num_epochs = 500
 
         with tf.Session() as sess:
             sess.run(tf.global_variables_initializer())
