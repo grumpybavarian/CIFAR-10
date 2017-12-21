@@ -52,6 +52,7 @@ class Model(object):
             sess.run(tf.global_variables_initializer())
 
             for epoch in range(num_epochs):
+                print("Epoch ", epoch)
                 for batch in data_batches:
                     batch_dict = unpickle(os.path.join(data_dir, batch))
                     labels = batch_dict[b"labels"]
@@ -59,7 +60,7 @@ class Model(object):
 
                     acc, _ = sess.run([self.accuracy, self.train_step], feed_dict={self.input_data: data,
                                                                                    self.labels: labels,
-                                                                                   self.keep_prob: 0.5})
+                                                                                   self.keep_prob: 0.99})
 
                     print(acc)
 
