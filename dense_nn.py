@@ -21,7 +21,7 @@ def unpickle(file):
     return dict
 
 class Model(object):
-    def __init__(self, num_hidden_layers=3, num_neurons=1024):
+    def __init__(self, num_hidden_layers=8, num_neurons=1024):
         self.input_data = tf.placeholder(tf.float32, shape=(None, 32*32*3))
         self.labels = tf.placeholder(tf.int32, shape=(None,))
         self.y_ = tf.one_hot(self.labels, 10)
@@ -46,7 +46,7 @@ class Model(object):
         data_batches = ["data_batch_1", "data_batch_2", "data_batch_3", "data_batch_4", "data_batch_5"]
         test_batch = ["test_batch"]
 
-        num_epochs = 10
+        num_epochs = 50
 
         with tf.Session() as sess:
             sess.run(tf.global_variables_initializer())
