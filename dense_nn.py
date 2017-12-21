@@ -58,7 +58,7 @@ class Model(object):
                     labels = batch_dict[b"labels"]
                     data = batch_dict[b"data"]
 
-                    acc, _ = sess.run([self.accuracy, self.train_step], feed_dict={self.input_data: data,
+                    _, acc = sess.run([self.train_step, self.accuracy], feed_dict={self.input_data: data,
                                                                                    self.labels: labels,
                                                                                    self.keep_prob: 0.99})
 
