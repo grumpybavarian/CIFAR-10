@@ -44,7 +44,7 @@ class Model(object):
     def train(self):
         data_dir = "./data/"
         data_batches = ["data_batch_1", "data_batch_2", "data_batch_3", "data_batch_4", "data_batch_5"]
-        test_batch = ["test_batch"]
+        test_batch = "test_batch"
 
         num_epochs = 50
 
@@ -62,6 +62,11 @@ class Model(object):
                                                                                    self.keep_prob: 0.5})
 
                     print(acc)
+
+            test_batch_dict = unpickle(os.path.join(data_dir, test_batch))
+            print(sess.run(self.train_step, feed_dict={self.input_data: test_batch_dict[b"data"],
+                                                       self.labels: test_batch_dict[b"labels"],
+                                                       self.keep_prob: 1.0}))
 
 
 
